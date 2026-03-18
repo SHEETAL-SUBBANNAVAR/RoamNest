@@ -3,8 +3,10 @@ const app = express();
 const mongoose = require("mongoose");
 const Listing = require("./modules/listing");
 const path = require("path");
+
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
+app.use(express.urlencoded({ extended: true }));
 
 main()
   .then(() => console.log("Connected to MongoDB"))
@@ -16,10 +18,19 @@ async function main() {
 app.get("/", (req, res) => {
   res.send("Hi, i am root!");
 });
+
+//index route for listings
 app.get("/listings", async (req, res) => {
   const allListings = await Listing.find({});
   res.render("./listings/index.ejs",{allListings})
 });
+//show route for listings
+app.get("/listings/:id", async (req, res) => {
+  const { id } = req.params;
+  const listing = await Listing.findById(id);
+  res.render("./listings/show.ejs", { listing });
+});
+
 // app.get("/testListings", async (req, res) => {
 //   let sampleListing = new Listing({ 
 //     title: "Hotel California",
