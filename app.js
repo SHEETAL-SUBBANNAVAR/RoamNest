@@ -4,12 +4,15 @@ const mongoose = require("mongoose");
 const Listing = require("./modules/listing");
 const path = require("path");
 const methodOverride = require("method-override");
+const ejsmate = require("ejs-mate");
 
 app.use(methodOverride("_method"));
+app.use(express.static(path.join(__dirname, "public")));
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({ extended: true }));
+app.engine("ejs", ejsmate);
 
 main()
   .then(() => console.log("Connected to MongoDB"))
@@ -47,21 +50,21 @@ app.post("/listings", async (req, res) => {
 });
 
 //edit route for listings
-app.get("/listing/:id/edit", async (req, res) => {
+app.get("/listings/:id/edit", async (req, res) => {
   const { id } = req.params;
   const listing = await Listing.findById(id);
   console.log(listing);
   res.render("./listings/edit.ejs", { listing });
 });
 //update route for listings
-app.put("/listing/:id", async (req, res) => {
+app.put("/listings/:id", async (req, res) => {
   const { id } = req.params;
   const listing = await Listing.findByIdAndUpdate(id, { ...req.body.listing });
   console.log(listing);
   res.redirect(`/listings/${id}`);
 });
 //delete route for listings
-app.delete("/listing/:id", async (req, res) => {
+app.delete("/listings/:id", async (req, res) => {
   const { id } = req.params;
   const deletedListing = await Listing.findByIdAndDelete(id);
   console.log(deletedListing);

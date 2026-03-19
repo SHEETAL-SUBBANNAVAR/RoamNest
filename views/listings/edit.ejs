@@ -1,14 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>wonderLust</title>
-</head>
-<body>
-    <body>
+<% layout("layouts/boilerplate") %>
     <h3>Edit your Listing</h3>
-    <form method="post" action="/listing/<%= listing._id%>?_method=PUT">
+    <form method="post" action="/listings/<%= listing._id%>?_method=PUT">
         <input type="text"name="listing[title]" value="<%= listing.title %>" >
         <br><br>
         <textarea type="text" name="listing[description]"><%= listing.description %></textarea>
@@ -23,5 +15,3 @@
         <br><br>
         <button type="submit">Add</button>
     </form>
-</body>
-</html>

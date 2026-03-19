@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>wanderLust</title>
-</head>
-<body>
+<% layout("layouts/boilerplate") %>
     <h3>Create a New Listing</h3>
     <form action="/listings" method="POST">
         <input type="text"name="listing[title]" placeholder="enter Title">
@@ -22,5 +15,3 @@
         <br><br>
         <button type="submit">Add</button>
     </form>
-</body>
-</html>
