@@ -6,14 +6,10 @@ const listingSchema = new Schema({
     required: true,
   },
   description: String,
-  Image: {
-    type: String,
-    default: "https://unsplash.com/photos/waves-of-body-of-water-splashing-on-sand-mBQIfKlvowM",
-    set: (v) =>
-      v === ""
-        ? "https://unsplash.com/photos/waves-of-body-of-water-splashing-on-sand-mBQIfKlvowM"
-        : v,
-  },
+  image: {
+  url: String,
+  filename: String,
+},
   price: Number,
   location: String,
   country: String,

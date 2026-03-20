@@ -51,3 +51,20 @@
     justify-content: center;
     align-items: space-evenly;
 }
+
+/* cards */
+.card {
+    border:none !important;
+    margin-bottom: 2rem;
+    width: 100% !important;
+    object-fit: cover !important;
+}
+.card-img-top{
+    border-radius: 1rem !important;
+}
+.card-body {
+    padding: 0 !important;
+}
+.card-text{
+    font-weight: 400 !important;
+}
