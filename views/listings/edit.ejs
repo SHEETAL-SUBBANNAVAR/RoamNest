@@ -1,4 +1,4 @@
-<% layout("layouts/boilerplate") %>
+<%- layout("layouts/boilerplate") %>
     <h3>Edit your Listing</h3>
     <form method="post" action="/listings/<%= listing._id%>?_method=PUT">
         <input type="text"name="listing[title]" value="<%= listing.title %>" >
