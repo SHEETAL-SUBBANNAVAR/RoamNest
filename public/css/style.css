@@ -1,6 +1,6 @@
-/* body{
-    background-color: pink;
-} */
+body{
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+}
 
 /* navbar */
 .navbar {
@@ -13,7 +13,7 @@
     font-size: 2rem;
 }
 
-.nav_link {
+.nav-link {
     color: #222222 !important;
 }
 
@@ -56,7 +56,7 @@
 .card {
     border:none !important;
     margin-bottom: 2rem;
-    width: 100% !important;
+    /* width: 100% !important; */
     object-fit: cover !important;
 }
 .card-img-top{
@@ -67,4 +67,7 @@
 }
 .card-text{
     font-weight: 400 !important;
+}
+.listing-click-link{
+    text-decoration: none !important;
 }
