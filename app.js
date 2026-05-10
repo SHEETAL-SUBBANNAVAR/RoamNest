@@ -9,6 +9,9 @@ const wrapAsync = require("./utils/wrapAsync.js");
 const ExpressError = require("./utils/ExpressError.js");
 const { listingSchema } = require("./schema.js")
 
+const session = require("express-session");
+const flash = require("connect-flash");
+
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "public")));
 
@@ -23,6 +26,17 @@ main()
 async function main() {
   await mongoose.connect("mongodb://localhost:27017/hotel");
 }
+app.use(session({
+    secret: "secret123",
+    resave: false,
+    saveUninitialized: true,
+    cookie:{
+      expires:Date.now()+7*24*60*60*1000,
+      maxAge:7*24*60*60*1000,
+      httpOnly:true,
+    }
+}));
+app.use(flash());
 const validateListing = (req, res, next) => {
   let { error } = listingSchema.validate(req.body);
   if (error) {
@@ -69,6 +83,7 @@ app.post(
     const newlisting = new Listing(req.body.listing);
     console.log(newlisting);
     await newlisting.save();
+    req.flash("success" , " New Listing Created!")
     res.redirect("/listings");
   }),
 );
